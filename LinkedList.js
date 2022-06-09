@@ -21,23 +21,23 @@ class LinkedList {
   }
   addLaste(data) {
     let node = new Node(data);
-    let current = this.head;
+    let curr = this.head;
 
-    if (!current) {
-      current = node;
+    if (!curr) {
+      curr = node;
     } else {
-      while (current.next) {
-        current = current.next;
+      while (curr.next) {
+        curr = curr.next;
       }
-      current.next = node;
+      curr.next = node;
     }
     this.length++;
   }
   printData() {
-    let current = this.head;
-    while (current) {
-      console.log(current.data);
-      current = current.next;
+    let curr = this.head;
+    while (curr) {
+      console.log(curr.data);
+      curr = curr.next;
     }
   }
   addAt(val, index) {
@@ -47,16 +47,17 @@ class LinkedList {
     if (index === 0) this.addFirst(val);
     else {
       const node = new Node(val);
-      let current, previous, count = 0;
+      let curr = this.head,
+        previous,
+        count = 0;
 
-      current = this.head;
 
       while (count < index) {
-        previous = current;
-        current = current.next;
+        previous = curr;
+        curr = curr.next;
         count++;
       }
-      node.next = current;
+      node.next = curr;
       previous.next = node;
       this.length++;
     }
@@ -71,33 +72,32 @@ class LinkedList {
     }
 
     let count = 0;
-    let current = this.head,
+    let curr = this.head,
       previous;
-    if (index === 0) this.head = current.next;
+    if (index === 0) this.head = curr.next;
     else {
       while (count < index) {
-        previous = current;
-        current = current.next;
+        previous = curr;
+        curr = curr.next;
         count++;
       }
-      previous.next = current.next;
+      previous.next = curr.next;
     }
     this.length--;
   }
   getAt(index) {
-    let current = this.head,
+    let curr = this.head,
       count = 0;
     if (index < 0 || index > this.length) {
       throw new Error('enter index > 0 and < list of size');
 
     }
     while (count < index) {
-      current = current.next;
+      curr = curr.next;
       count++;
     }
-    return current.data;
+    return curr.data;
   }
 
 }
 export default LinkedList;
-
